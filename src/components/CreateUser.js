@@ -6,7 +6,6 @@ const CreateUser = () => {
   const [username, setUser] = useState('')
 
   const addUser = async () => {
-
     axios.post('http://localhost:5000/users/add', {username: username})
     .then(res => {console.log(res.data)})
     .catch(err => {console.log(err)})

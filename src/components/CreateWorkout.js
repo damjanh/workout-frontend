@@ -17,8 +17,19 @@ const CreateWorkout = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    setUsers(['John', 'Jane', 'Joe'])
+    fetchUsers()
   }, [])
+
+  const fetchUsers = async () => {
+    const res = await axios.get('http://localhost:5000/users/')
+    let usernames = [];
+    if (res.status === 200) {
+      res.data.map(user => usernames.push(user.username))
+    }
+
+    setUsers(usernames)
+  }
+
 
   const addWorkout = async () => {
     axios.post('http://localhost:5000/workouts/add', workout)
