@@ -9,14 +9,16 @@ import EditWorkout from "./components/EditWorkout";
 function App() {
   return (
     <Router>
-      <NavBar />
-      <br/>
-      <Routes>
-        <Route path="/" element={<WorkoutList/>} />
-        <Route path="/edit/:id" element={<EditWorkout/>} />
-        <Route path="/create" element={<CreateWorkout/>} />
-        <Route path="/user" element={<CreateUser/>} />
-      </Routes>
+      <div className="container">
+        <NavBar />
+        <br/>
+        <Routes>
+          <Route path="/" element={<WorkoutList/>} />
+          <Route path="/edit/:id" element={<EditWorkout/>} />
+          <Route path="/create" element={<CreateWorkout/>} />
+          <Route path="/user" element={<CreateUser/>} />
+        </Routes>
+      </div>
     </Router>
   );
 }
