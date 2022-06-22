@@ -1,19 +1,15 @@
 import { useState } from 'react'
+import axios from 'axios'
 
 const CreateUser = () => {
 
   const [username, setUser] = useState('')
 
-  const addUser = async (user) => {
-    const res = await fetch('http://localhost:5000/users/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({username: username})
-        })
-        // TODO: handle error
-        console.log("Added User")
+  const addUser = async () => {
+
+    axios.post('http://localhost:5000/users/add', {username: username})
+    .then(res => {console.log(res.data)})
+    .catch(err => {console.log(err)})
   }
 
   const onChangeUsername = (value) => {
@@ -25,7 +21,7 @@ const CreateUser = () => {
     e.preventDefault()
     console.log(`Submitted user:${username}`)
 
-    addUser(username)
+    addUser()
     setUser('')
   }
 

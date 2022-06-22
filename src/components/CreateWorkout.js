@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 
@@ -19,17 +20,12 @@ const CreateWorkout = () => {
     setUsers(['John', 'Jane', 'Joe'])
   }, [])
 
-  const addWorkout = async (workout) => {
-    const res = await fetch('http://localhost:5000/workouts/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(workout)
-        })
-        // TODO: handle error
-        console.log("Added workout")
-        navigate('/')
+  const addWorkout = async () => {
+    axios.post('http://localhost:5000/workouts/add', workout)
+    .then(res => {console.log(res.data)})
+    .catch(err => {console.log(err)})
+
+    navigate('/')
   }
 
   const onChangeUsername = (value) => {
